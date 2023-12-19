@@ -30,3 +30,9 @@ Route::post('/send-contact', [\App\Http\Controllers\ContactController::class, 's
 Route::post('/admin/add-product', [\App\Http\Controllers\ProductController::class, 'addProduct']);
 
 Route::get('/admin/products', [\App\Http\Controllers\ProductController::class, 'adminProducts']);
+
+Route::get('/admin/all-products', [\App\Http\Controllers\ProductsController::class, 'index']);
+
+Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'delete']);
+
+Route::get('/admin/delete-contact/{contacts}', [\App\Http\Controllers\ContactTwoController::class, 'delete']);

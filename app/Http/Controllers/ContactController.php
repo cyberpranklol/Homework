@@ -16,6 +16,7 @@ class ContactController extends Controller
         return view('allContacts', compact('contacts'));
     }
 
+
     public function sendContact(Request $request){
         $request->validate([
             'email'=>'required|string',
