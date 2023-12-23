@@ -23,9 +23,10 @@
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
+                    <td>{{$product->amount}}</td>
                     <td>{{$product->price}}</td>
                     <td>
-                        <a href="/admin/delete-product/ {{$product->id}}">
+                        <a href="{{route('obrisiProizvod', ['product'=>$product->id])}}" href="/admin/delete-product/ {{$product->id}}">
                             <button>Obrisi</button>
                         </a>
                         <button>Edituj</button>

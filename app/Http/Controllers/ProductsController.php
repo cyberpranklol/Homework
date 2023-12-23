@@ -12,8 +12,9 @@ class ProductsController extends Controller
         return view('allProducts', compact('allProducts'));
     }
 
+
     public function delete($product){
-        $singleProduct = ProductsModel::where(['id' => $product])->first();
+        $singleProduct = ProductsModel::where(['id'=>$product])->first();
 
         if($singleProduct == null){
             die('Ovaj proizvod ne postoji!');
@@ -21,5 +22,25 @@ class ProductsController extends Controller
 
         $singleProduct->delete();
         return redirect()->back();
+    }
+
+    public function savedProduct(Request $request){
+        $request->validate([
+            'name'=>'required|unique:products',
+            'description'=>'required',
+            'amount'=>'required|min:0',
+            'price'=>'required|min:0',
+            'image'=>'required'
+        ]);
+
+        ProductsModel::create([
+            'name'=>$request->get('name'),
+            'description'=>$request->get('description'),
+            'amount'=>$request->get('amount'),
+            'price'=>$request->get('price'),
+            'image'=>$request->get('image')
+        ]);
+
+        return redirect->route('allProducts');
     }
 }

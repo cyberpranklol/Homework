@@ -16,6 +16,11 @@ class ProductController extends Controller
         return view('adminProducts', compact('products'));
     }
 
+    public function edit($id){
+        $product = ProductsModel::find($id);
+        return view('editProducts', compact('product'));
+    }
+
     public function addProduct(Request $request){
         $request->validate([
             'name'=>'required',

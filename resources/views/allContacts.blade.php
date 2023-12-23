@@ -25,7 +25,7 @@
                 <td>{{$contact->subject}}</td>
                 <td>{{$contact->message}}</td>
                 <td>
-                    <a href="/admin/delete-contact/ {{$contact->id}}">
+                    <a href="{{route('deleteContact', ['contact'=>$contact->id])}}" href="/admin/delete-contact/ {{$contact->id}}">
                         <button>Obrisi</button>
                     </a>
                     <button>Edituj</button>
