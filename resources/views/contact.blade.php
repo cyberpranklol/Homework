@@ -5,18 +5,24 @@
 @endsection
 
 @section('content')
-   <p>
-       <form action="/posalji-poruku" method="post">
-           <label for="email">E-mail:</label><br>
-           <input type="email" id="email" name="email" required><br><br>
+    <div class="container mt-5">
+        <form action="/posalji-poruku" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
 
-           <label for="subject">Subject:</label><br>
-           <input type="text" id="subject" name="subject" required><br><br>
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject:</label>
+                <input type="text" class="form-control" id="subject" name="subject" required>
+            </div>
 
-           <label for="message">Message:</label><br>
-           <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
 
-           <input type="submit" value="Posalji">
-       </form>
-   </p>
+            <button type="submit" class="btn btn-primary">Posalji</button>
+        </form>
+    </div>
 @endsection

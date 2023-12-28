@@ -10,24 +10,35 @@
         <p>{{$one->name}}</p>
     @endforeach
 
-    <form method="POST" action="/send-contact">
+    <div class="container mt-5">
+        <form method="POST" action="/send-contact">
 
-        @if ($errors->any())
-            <p>Greska: {{$errors->first() }}</p>
-        @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    Greska: {{$errors->first()}}
+                </div>
+            @endif
 
-        {{ csrf_field() }}
-        <label for="email">E-mail:</label><br>
-        <input type="email" id="email" name="email"><br><br>
+            {{ csrf_field() }}
 
-        <label for="subject">Subject:</label><br>
-        <input type="text" id="subject" name="subject"><br><br>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject:</label>
+                <input type="text" class="form-control" id="subject" name="subject">
+            </div>
 
-        <input type="submit" value="Pošalji poruku">
-    </form>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="4" cols="50"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Pošalji poruku</button>
+        </form>
+    </div>
 
 @endsection
 
