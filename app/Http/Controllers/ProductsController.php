@@ -16,8 +16,8 @@ class ProductsController extends Controller
     public function delete($product){
         $singleProduct = ProductsModel::where(['id'=>$product])->first();
 
-        if($singleProduct == null){
-            die('Ovaj proizvod ne postoji!');
+        if ($singleProduct == null){
+            die('Ovaj proizvod ne postoji');
         }
 
         $singleProduct->delete();
