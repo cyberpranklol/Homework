@@ -45,10 +45,10 @@ Route::view('/admin/add-products', 'addProduct');
 Route::post('/admin/product/save', [\App\Http\Controllers\ProductsController::class, 'savedProduct'])
     ->name('snimanjeOglasa');
 
-Route::get('/admin/products/edit/{id}', [\App\Http\Controllers\ProductsController::class, 'singleProduct'])
+Route::get('/admin/products/edit/{product}', [\App\Http\Controllers\ProductsController::class, 'singleProduct'])
     ->name('product.single');
 
-Route::post('/admin/product/save/{id}', [\App\Http\Controllers\ProductsController::class, 'edit'])
+Route::post('/admin/product/save/{product}', [\App\Http\Controllers\ProductsController::class, 'edit'])
     ->name('product.save');
 
 

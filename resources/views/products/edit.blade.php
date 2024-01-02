@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <form method="POST" action="{{ route('product.save', ['id' => $product->id]) }}">
+        <form method="POST" action="{{ route('product.save', ['product' => $product->id]) }}">
             @csrf
 
             <div class="mb-3">

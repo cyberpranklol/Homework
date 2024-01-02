@@ -44,21 +44,11 @@ class ProductsController extends Controller
         return redirect->route('allProducts');
     }
 
-    public function singleProduct(Request $request, $id){
-        $product = ProductsModel::where(['id'=>$id])->first();
-
-        if($product==null){
-            die('Ovaj proizvod ne postoji!');
-        }
-
-        return view('products/edit', compact ('product'));
+    public function singleProduct(Request $request, ProductsModel $product){
+        return view('products.edit', compact ('product'));
     }
 
-    public function edit(Request $request, $id){
-        $product = ProductsModel::where(['id' => $id])->first();
-        if($product == null){
-            die('Ovaj proizvod ne postoji!');
-        }
+    public function edit(Request $request, ProductsModel $product){
 
         $product->name = $request->get('name');
         $product->description = $request->get('description');
