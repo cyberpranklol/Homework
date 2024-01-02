@@ -48,7 +48,7 @@ Route::post('/admin/product/save', [\App\Http\Controllers\ProductsController::cl
 Route::get('/admin/products/edit/{id}', [\App\Http\Controllers\ProductsController::class, 'singleProduct'])
     ->name('product.single');
 
-Route::post('/admin/product/save/{id}', [\App\Http\Controllers\ProductsController::class, 'saveProduct'])
+Route::post('/admin/product/save/{id}', [\App\Http\Controllers\ProductsController::class, 'edit'])
     ->name('product.save');
 
 

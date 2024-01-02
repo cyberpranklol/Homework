@@ -54,7 +54,18 @@ class ProductsController extends Controller
         return view('products/edit', compact ('product'));
     }
 
-    public function saveProduct(Request $request, $id){
+    public function edit(Request $request, $id){
+        $product = ProductsModel::where(['id' => $id])->first();
+        if($product == null){
+            die('Ovaj proizvod ne postoji!');
+        }
 
+        $product->name = $request->get('name');
+        $product->description = $request->get('description');
+        $product->amount = $request->get('amount');
+        $product->price = $request->get('price');
+        $product->save();
+
+        return redirect()->back();
     }
 }
