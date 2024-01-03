@@ -6,10 +6,6 @@
 
 @section('content')
 
-    @foreach($products as $one)
-        <p>{{$one->name}}</p>
-    @endforeach
-
     <div class="container mt-5">
         <form method="POST" action="/send-contact">
 
