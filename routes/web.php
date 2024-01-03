@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactTwoController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,43 +20,52 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [HomepageController::class, 'index']);
 
-Route::get('/', [\App\Http\Controllers\HomepageController::class, 'index']);
+Route::get('/shop', [ShopController::class, 'index']);
 
-Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
 
-Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);
 
-Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index']);
+Route::get('/admin/all-contacts', [ContactController::class, 'allContacts'])
+    ->middleware(['auth', \App\Http\Middleware\AdminCheckMiddleware::class]);
 
-Route::get('/admin/all-contacts', [\App\Http\Controllers\ContactController::class, 'allContacts']);
+Route::get('/products', [ProductController::class, 'index']);
 
-Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index']);
+Route::post('/admin/send-contact', [ContactController::class, 'sendContact']);
 
-Route::post('/send-contact', [\App\Http\Controllers\ContactController::class, 'sendContact']);
+Route::post('/admin/add-product', [ProductController::class, 'addProduct'])
+    ->middleware('auth');
 
-Route::post('/admin/add-product', [\App\Http\Controllers\ProductController::class, 'addProduct']);
+Route::get('/admin/products', [ProductController::class, 'adminProducts'])
+    ->middleware('auth');
 
-Route::get('/admin/products', [\App\Http\Controllers\ProductController::class, 'adminProducts']);
-
-Route::get('/admin/all-products', [\App\Http\Controllers\ProductsController::class, 'index'])
+Route::get('/admin/all-products', [ProductsController::class, 'index'])
+    ->middleware('auth')
     ->name('allProducts');
 
-Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'delete'])
+Route::get('/admin/delete-product/{product}', [ProductsController::class, 'delete'])
+    ->middleware('auth')
     ->name('obrisiProizvod');
 
-Route::get('/admin/delete-contact/{contact}', [\App\Http\Controllers\ContactTwoController::class, 'delete'])
+Route::get('/admin/delete-contact/{contact}', [ContactTwoController::class, 'delete'])
+    ->middleware('auth')
     ->name('deleteContact');
 
-Route::view('/admin/add-products', 'addProduct');
+Route::view('/admin/add-products', 'addProduct')
+    ->middleware('auth');
 
-Route::post('/admin/product/save', [\App\Http\Controllers\ProductsController::class, 'savedProduct'])
+Route::post('/admin/product/save', [ProductsController::class, 'savedProduct'])
+    ->middleware('auth')
     ->name('snimanjeOglasa');
 
-Route::get('/admin/products/edit/{product}', [\App\Http\Controllers\ProductsController::class, 'singleProduct'])
+Route::get('/admin/products/edit/{product}', [ProductsController::class, 'singleProduct'])
+    ->middleware('auth')
     ->name('product.single');
 
-Route::post('/admin/product/save/{product}', [\App\Http\Controllers\ProductsController::class, 'edit'])
+Route::post('/admin/product/save/{product}', [ProductsController::class, 'edit'])
+    ->middleware('auth')
     ->name('product.save');
 
 require __DIR__.'/auth.php';
